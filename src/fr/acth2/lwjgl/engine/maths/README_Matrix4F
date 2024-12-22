@@ -1,0 +1,73 @@
+Constructeur et Propriétés
+
+    Matrix4fMatrix4f: une matrice 4×44×4 initialisée avec des zéros (Mij=0Mij​=0).
+
+Matrice Identité
+identity()
+[1000010000100001]
+​1000​0100​0010​0001​
+​
+Translation
+translate(Vector3f translate)
+
+Ajoute une translation au vecteur t=(tx,ty,tz)t=(tx​,ty​,tz​) :
+T4×4=[100tx010ty001tz0001]
+T4×4​=
+​1000​0100​0010​tx​ty​tz​1​
+​
+Rotation
+rotate(float angle, Vector3f axis)
+
+Effectue une rotation d'angle θθ autour d'un axe a=(ax,ay,az)a=(ax​,ay​,az​) normalisé (∣a∣=1∣a∣=1) :
+R4×4=[c+ax2CaxayC−azsaxazC+ays0ayaxC+azsc+ay2CayazC−axs0azaxC−aysazayC+axsc+az2C00001]
+R4×4​=
+​c+ax2​Cay​ax​C+az​saz​ax​C−ay​s0​ax​ay​C−az​sc+ay2​Caz​ay​C+ax​s0​ax​az​C+ay​say​az​C−ax​sc+az2​C0​0001​
+​
+
+où c=cos⁡(θ),s=sin⁡(θ),C=1−cc=cos(θ),s=sin(θ),C=1−c.
+Mise à l'échelle
+scale(Vector3f scalar)
+
+Applique un facteur d'échelle s=(sx,sy,sz)s=(sx​,sy​,sz​) :
+S4×4=[sx0000sy0000sz00001]
+S4×4​=
+​sx​000​0sy​00​00sz​0​0001​
+​
+Transformation Combinée
+transform(Vector3f position, Vector3f rotation, Vector3f scale)
+
+Applique une transformation composée :
+
+    Translation TT,
+    Rotation RR (autour des axes X, Y, Z),
+    Mise à l’échelle SS.
+    La matrice résultante est :
+
+Mfinal=T⋅(RX⋅(RY⋅RZ))⋅S
+Mfinal​=T⋅(RX​⋅(RY​⋅RZ​))⋅S
+Projection
+projection(float fov, float aspect, float near, float far)
+
+Matrice de projection perspective :
+P=[1a⋅tan⁡(fov2)00001tan⁡(fov2)0000−f+nf−n−100−2fnf−n0]
+P=
+​a⋅tan(2fov​)1​000​0tan(2fov​)1​00​00−f−nf+n​−f−n2fn​​00−10​
+​
+
+où a=aspect,n=near,f=fara=aspect,n=near,f=far.
+Vue (Caméra)
+view(Vector3f position, Vector3f rotation)
+
+Calcule une matrice de vue :
+
+    Translation négative T(−p)T(−p),
+    Rotation inverse R−1R−1.
+
+V=T(−p)⋅(RZ⋅(RY⋅RX))
+V=T(−p)⋅(RZ​⋅(RY​⋅RX​))
+Multiplication
+multiply(Matrix4f matrix, Matrix4f other)
+
+Produit matriciel C=A⋅BC=A⋅B :
+Cij=∑k=03Aik⋅Bkj
+Cij​=k=0∑3​Aik​⋅Bkj​
