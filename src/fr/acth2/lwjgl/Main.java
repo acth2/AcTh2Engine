@@ -47,7 +47,6 @@ public class Main implements Runnable
     public static GameObject pistol = new GameObject(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), new Vector3f(0.25f, 0.25f, 0.25f), pistolMesh);
     public static GameObject weapon = new GameObject(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), new Vector3f(1f, 1f, 1f), weaponMesh);
 
-    DirectionalLight sun = new DirectionalLight(new Vector3f(0.5f, -0.5f, -0.5f).normalize(true), new Vector3f(1.0f, 1.0f, 1.0f)); // Direction du soleil et couleur
     public IntroCamera introCamera = new IntroCamera(new Vector3f(0, 0, 1), new Vector3f(0, 0, 0));
     public IntroCamera menuCamera = new IntroCamera(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0));
 
